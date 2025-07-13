@@ -1,0 +1,5 @@
+const container = document.getElementById('posts-container')
+const taskInput = document.getElementById('task-input')
+const addButton = document.getElementById('add-button')
+const downloadButton = document.querySelector('.button-download')
+const overlay = document.getElementById('overlay')
