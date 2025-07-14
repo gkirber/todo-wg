@@ -1,20 +1,25 @@
-import { host } from '../script.js'
+import { host } from "../script.js";
 
 export async function getTodos() {
-	try {
-		const response = await fetch(host, {
-			method: 'GET',
-		})
+  try {
+    const response = await fetch(host, {
+      method: "GET",
+    });
 
-		if (!response.ok) {
-			throw new Error(`Data not received. Status: ${response.status}`)
-		}
+    if (!response.ok) {
+      throw new Error(`Data not received. Status: ${response.status}`);
+    }
 
-		const data = await response.json()
-		console.log('Data received:', data)
-		return data
-	} catch (error) {
-		console.error(`Error receiving data:`, error.message)
-		throw error
-	}
+    const data = await response.json();
+
+    if (data.length === 0) {
+      throw new Error("No tasks");
+    }
+    data.sort((a, b) => a.order - b.order);
+    console.log("Data received:", data);
+    return data;
+  } catch (error) {
+    console.error(`Error getting data:`, error.message);
+    throw error;
+  }
 }

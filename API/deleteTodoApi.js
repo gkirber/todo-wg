@@ -13,7 +13,7 @@ export async function deleteTodo(id) {
 
 		return true
 	} catch (error) {
-		console.error(`Error deleting task:`, error.message)
+		console.error(`Error deleting:`, error.message)
 		throw error
 	}
 }
