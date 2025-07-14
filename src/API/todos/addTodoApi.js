@@ -1,4 +1,4 @@
-import { host } from '../script.js'
+import { host } from '../host.js'
 
 export async function addTodo(newTodo) {
 	try {
@@ -17,7 +17,7 @@ export async function addTodo(newTodo) {
 		console.log('Task added')
 		return await response.json()
 	} catch (error) {
-		console.error(`Error adding:`, error.message)
+		console.error(`Error adding task:`, error.message)
 		throw error
 	}
 }

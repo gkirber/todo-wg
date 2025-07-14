@@ -1,0 +1,1 @@
+export const host = 'https://68740dc7dd06792b9c93102f.mockapi.io/api/v1/todos'

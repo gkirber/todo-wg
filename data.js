@@ -1,4 +1,4 @@
-;[
+[
 	{
 		text: 'Go to the store',
 		createdAt: 1736181171562,

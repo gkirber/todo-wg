@@ -1,4 +1,4 @@
-import { host } from '../script.js'
+import { host } from '../host.js'
 
 export async function updateTodo(id, newText) {
 	try {
@@ -11,7 +11,7 @@ export async function updateTodo(id, newText) {
 		})
 
 		if (!response.ok) {
-			throw new Error(`Failed to update task. Status: ${response.status}`)
+			throw new Error(`Failed to update the task. Status: ${response.status}`)
 		}
 
 		console.log('Task text updated')

@@ -1,4 +1,4 @@
-import { host } from '../script.js'
+import { host } from '../host.js'
 
 export async function deleteTodo(id) {
 	try {
@@ -13,7 +13,7 @@ export async function deleteTodo(id) {
 
 		return true
 	} catch (error) {
-		console.error(`Error deleting:`, error.message)
+		console.error(`Error deleting task:`, error.message)
 		throw error
 	}
 }

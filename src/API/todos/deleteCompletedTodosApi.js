@@ -1,4 +1,5 @@
-import { host } from '../script.js'
+import { host } from '../host.js'
+
 export async function deleteCompletedTodos(container) {
 	try {
 		const completedTodos = Array.from(
@@ -17,7 +18,7 @@ export async function deleteCompletedTodos(container) {
 
 			if (!deleteResponse.ok) {
 				throw new Error(
-					`Failed to delete completed list. Status: ${deleteResponse.status}`
+					`Failed to delete completed tasks. Status: ${deleteResponse.status}`
 				)
 			}
 		}
