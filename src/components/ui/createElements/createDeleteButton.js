@@ -1,4 +1,4 @@
-import { initDelete } from '../../index.js'
+import { initDelete } from '../../inits/initDelete.js'
 
 export function createDeleteButton(todo) {
 	const deleteButton = document.createElement('button')

@@ -1,4 +1,4 @@
-import { updateTasksOrder } from "../index.js";
+import { updateTasksOrder } from "../ui/updateTasksOrder.js";
 
 export function initDragAndDrop(todoElement, todo, container) {
     todoElement.draggable = true;

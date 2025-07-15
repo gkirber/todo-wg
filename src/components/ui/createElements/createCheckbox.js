@@ -1,4 +1,4 @@
-import { initChangeStatus } from "../../index.js";
+import { initChangeStatus } from "../../inits/initChangeStatus.js";
 
 export function createCheckbox(todo) {
   const checkbox = document.createElement("input");

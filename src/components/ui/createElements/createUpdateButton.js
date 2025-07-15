@@ -1,4 +1,4 @@
-import { updateTask } from '../../index.js'
+import { updateTask } from '../../ui/updateTask.js'
 
 export function createUpdateButton(todo) {
 	const updateButton = document.createElement('button')

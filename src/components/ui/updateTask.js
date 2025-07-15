@@ -1,6 +1,6 @@
 import { updateTodo } from '../../API/index.js'
 import { showError } from '../../utils/helpers.js'
-import { loadData } from '../index.js'
+import { loadData } from './loadData.js'
 
 export async function updateTask(todo) {
 	const { value: newText } = await Swal.fire({
