@@ -1,5 +1,5 @@
 import { addTodo } from '../../API/index.js'
-import { showError } from '../../utils/helpers.js'
+import { showError } from '../../utils/notification.js'
 import { loadData } from './loadData.js'
 
 export async function addNewTodo(taskInput) {

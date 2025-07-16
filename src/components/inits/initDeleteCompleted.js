@@ -1,33 +1,24 @@
-import { deleteCompletedTodos } from '../../API/index.js'
-import { showError } from '../../utils/helpers.js'
-import { loadData } from '../ui/loadData.js'
-import { container, deleteCompletedButton } from '../ui/renderData.js'
+import { showError } from "../../utils/notification.js";
+import { deleteCompletedTodos } from "../../API/index.js";
+import { deleteCompletedButton, loadData, container } from "../index.js";
+import { showConfirmation } from "../../utils/notification.js";
 
 export function initDeleteCompleted() {
-	deleteCompletedButton.addEventListener('click', async () => {
-		const { isConfirmed } = await Swal.fire({
-			title: 'Are you sure?',
-			text: 'All completed tasks will be deleted!',
-			icon: 'warning',
-			showCancelButton: true,
-			confirmButtonColor: '#3085d6',
-			cancelButtonColor: '#d33',
-			confirmButtonText: 'Yes, delete!',
-			cancelButtonText: 'Cancel',
-		})
+  deleteCompletedButton.addEventListener("click", async () => {
+    const isConfirmed = await showConfirmation(
+      "All completed tasks will be deleted! Are you sure?"
+    );
 
-		console.log(isConfirmed)
+    if (!isConfirmed) {
+      return;
+    }
 
-		if (!isConfirmed) {
-			return
-		}
-
-		try {
-			await deleteCompletedTodos(container)
-			await loadData()
-		} catch (error) {
-			console.error(error.message)
-			showError('Failed to delete the task list')
-		}
-	})
+    try {
+      await deleteCompletedTodos(container);
+      await loadData();
+    } catch (error) {
+      console.error(error.message);
+      showError("Failed to delete the task list");
+    }
+  });
 }

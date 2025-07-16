@@ -11,7 +11,7 @@
 		<div id="overlay">
 			<div id="spinner"></div>
 		</div>
-
+		<h1 class="app-title">TODO App</h1>
 		<form id="signup-form" class="form-container">
 			<h2 class="form-title">Registration</h2>
 			<input
@@ -32,6 +32,7 @@
 			<button id="signIn" type="button" class="form-button secondary">
 				Sign In
 			</button>
+			<button id="google-signup-button">Sign in with Google</button>
 		</form>
 
 		<form id="signin-form" class="form-container">
@@ -51,10 +52,27 @@
 				required
 			/>
 			<button type="submit" class="form-button submit">Sign In</button>
-			<button id="signUp" type="button" class="form-button secondary">
-				Sign Up
+			<button id="google-signin-button">Continue with Google</button>
+			<button
+				id="forgot-password-button"
+				type="button"
+				class="form-button secondary"
+			>
+				Forgot Password?
 			</button>
 		</form>
+		<form id="forgot-password-form">
+			<input
+				type="email"
+				id="forgot-password-email"
+				class="form-input"
+				required
+			/>
+			<button type="submit" class="form-button submit">
+				Send Password Reset Link
+			</button>
+		</form>
+		<div id="forgot-password-message"></div>
 		<div id="task-container">
 			<div class="input-block">
 				<input type="text" id="task-input" placeholder="Enter task" />
@@ -64,8 +82,9 @@
 			</div>
 
 			<div id="posts-container"></div>
-			<button id="delete-completed-button">Delete all completed tasks</button>
+			<button id="delete-completed-button">Delete All Completed Tasks</button>
 		</div>
+		<button id="logout-button" class="logout-button">Logout</button>
 		<script src="./src/app.js" type="module"></script>
 	</body>
 </html>

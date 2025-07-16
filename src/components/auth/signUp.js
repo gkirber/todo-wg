@@ -1,8 +1,16 @@
-import { auth, createUserWithEmailAndPassword } from '../../firebaseConfig.js'
-
+import {
+	auth,
+	createUserWithEmailAndPassword,
+	sendEmailVerification,
+} from '../../firebaseConfig.js'
+import { showSuccess, showWarning } from '../../utils/notification.js'
+import { signWithGoogle } from './googleAuth.js'
 const signupForm = document.getElementById('signup-form')
 const signinForm = document.getElementById('signin-form')
 const signInButton = document.getElementById('signIn')
+
+const googleButton = document.getElementById('google-signup-button')
+googleButton.addEventListener('click', signWithGoogle)
 
 signInButton.addEventListener('click', event => {
 	event.preventDefault()
@@ -25,22 +33,26 @@ signupForm.addEventListener('submit', async event => {
 		)
 
 		const user = userCredential.user
-		console.log('User registered', user.uid)
+		await sendEmailVerification(user)
 
-		alert('Registration successful! You can now sign in.')
+		showSuccess(
+			'To sign in, you need to verify your email. Please check your inbox.'
+		)
 		signupForm.reset()
 		hideSignupForm()
 		showSigninForm()
 	} catch (error) {
+		if (error.code === 'auth/email-already-in-use') {
+			showWarning('This email is already registered. Please sign in.')
+		}
 		console.error('Registration error: ', error.message, error.code)
-		alert(`Registration error: ${error.message}`)
 	}
 })
 
-function hideSignupForm() {
+export function hideSignupForm() {
 	signupForm.style.display = 'none'
 }
 
-function showSigninForm() {
-	signinForm.style.display = 'block'
+export function showSigninForm() {
+	signinForm.style.display = 'flex'
 }

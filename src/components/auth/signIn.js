@@ -1,15 +1,26 @@
-import { auth, signInWithEmailAndPassword } from '../../firebaseConfig.js'
+import {
+	auth,
+	sendEmailVerification,
+	signInWithEmailAndPassword,
+} from '../../firebaseConfig.js'
+import {
+	showConfirmation,
+	showSuccess,
+	showWarning,
+} from '../../utils/notification.js'
 import { loadData } from '../index.js'
-const signinForm = document.getElementById('signin-form')
-const signupForm = document.getElementById('signup-form')
-const signUpButton = document.getElementById('signUp')
-const taskContainer = document.getElementById('task-container')
+import { signWithGoogle } from './googleAuth.js'
 
-signUpButton.addEventListener('click', event => {
-	event.preventDefault()
-	hideSigninForm()
-	showSignupForm()
-})
+const googleButton = document.getElementById('google-signin-button')
+googleButton.addEventListener('click', signWithGoogle)
+
+const forgotPasswordForm = document.getElementById('forgot-password-form')
+const forgotPasswordButton = document.getElementById('forgot-password-button')
+forgotPasswordButton.addEventListener('click', showForgotPasswordForm)
+
+const signinForm = document.getElementById('signin-form')
+
+const taskContainer = document.getElementById('task-container')
 
 signinForm.addEventListener('submit', async event => {
 	event.preventDefault()
@@ -26,26 +37,37 @@ signinForm.addEventListener('submit', async event => {
 		)
 
 		const user = userCredential.user
-		console.log('User authorized', user.uid)
 
-		alert('Authorization successful')
+		if (!user.emailVerified) {
+			showWarning('Your email is not verified. Please check your inbox.')
+			const resend = await showConfirmation('Resend verification email?')
+
+			if (resend) {
+				await sendEmailVerification(user)
+				showSuccess('Verification email resent. Please check your inbox.')
+			}
+			return
+		}
 		hideSigninForm()
 		showTasksBlock()
 		loadData()
 	} catch (error) {
-		console.error('Authorization error: ', error.message, error.code)
-		alert(`Authorization error: ${error.message}`)
+		if (error.code === 'auth/email-already-in-use') {
+			showWarning('This email is already registered. Please sign in.')
+		}
+		console.error('Registration error: ', error.message, error.code)
 	}
 })
 
-function showTasksBlock() {
+export function showTasksBlock() {
 	taskContainer.style.display = 'block'
 }
 
-function hideSigninForm() {
+export function hideSigninForm() {
 	signinForm.style.display = 'none'
 }
 
-function showSignupForm() {
-	signupForm.style.display = 'block'
+function showForgotPasswordForm() {
+	forgotPasswordForm.style.display = 'flex'
+	hideSigninForm()
 }

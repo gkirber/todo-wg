@@ -14,7 +14,7 @@ export async function getTodos(uid, token) {
 		console.log('Data received:', data)
 
 		if (!data) {
-			throw new Error('No tasks')
+			return []
 		}
 
 		const todosArray = Object.keys(data).map(key => ({
@@ -22,7 +22,7 @@ export async function getTodos(uid, token) {
 			...data[key],
 		}))
 
-		todosArray.sort((a, b) => (a.order || 0) - (b.order || 0))
+		todosArray.sort((a, b) => a.order - b.order)
 
 		console.log(todosArray)
 		return todosArray

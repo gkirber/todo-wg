@@ -5,7 +5,7 @@ export function createDeleteButton(todo) {
 	deleteButton.classList.add('button-function')
 
 	const deleteIcon = document.createElement('img')
-	deleteIcon.src = './assets/icons/icon-delete.png'
+	deleteIcon.src = '../../assets/icons/icon-delete.png'
 	deleteIcon.alt = 'Delete'
 	deleteIcon.title = 'Delete'
 	deleteIcon.width = 24

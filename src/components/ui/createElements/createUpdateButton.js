@@ -5,7 +5,7 @@ export function createUpdateButton(todo) {
 	updateButton.classList.add('button-function')
 
 	const updateIcon = document.createElement('img')
-	updateIcon.src = './assets/icons/icon-update.png'
+	updateIcon.src = '../../assets/icons/icon-update.png'
 	updateIcon.alt = 'Edit'
 	updateIcon.title = 'Edit'
 	updateIcon.width = 24
