@@ -11,19 +11,61 @@
 		<div id="overlay">
 			<div id="spinner"></div>
 		</div>
-		<div class="input-block">
-			<input type="text" id="task-input" placeholder="Enter task" />
-			<button id="add-button">
-				<img src="./assets/icons/icon-add.png" class="icons" />
+
+		<form id="signup-form" class="form-container">
+			<h2 class="form-title">Registration</h2>
+			<input
+				type="email"
+				id="signup-email"
+				class="form-input"
+				placeholder="Email"
+				required
+			/>
+			<input
+				type="password"
+				id="signup-password"
+				class="form-input"
+				placeholder="Password"
+				required
+			/>
+			<button type="submit" class="form-button submit">Register</button>
+			<button id="signIn" type="button" class="form-button secondary">
+				Sign In
 			</button>
-		</div>
+		</form>
 
-		<div>
-			<button id="button" class="button-download">Get tasks</button>
-		</div>
+		<form id="signin-form" class="form-container">
+			<h2 class="form-title">Authorization</h2>
+			<input
+				type="email"
+				id="signin-email"
+				class="form-input"
+				placeholder="Email"
+				required
+			/>
+			<input
+				type="password"
+				id="signin-password"
+				class="form-input"
+				placeholder="Password"
+				required
+			/>
+			<button type="submit" class="form-button submit">Sign In</button>
+			<button id="signUp" type="button" class="form-button secondary">
+				Sign Up
+			</button>
+		</form>
+		<div id="task-container">
+			<div class="input-block">
+				<input type="text" id="task-input" placeholder="Enter task" />
+				<button id="add-button">
+					<img src="./assets/icons/icon-add.png" class="icons" />
+				</button>
+			</div>
 
-		<div id="posts-container"></div>
-		<button id="delete-completed-button">Delete all completed tasks</button>
+			<div id="posts-container"></div>
+			<button id="delete-completed-button">Delete all completed tasks</button>
+		</div>
 		<script src="./src/app.js" type="module"></script>
 	</body>
 </html>

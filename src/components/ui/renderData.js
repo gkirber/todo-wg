@@ -1,5 +1,4 @@
 import { hideLoader } from '../../utils/helpers.js'
-import { downloadButton } from '../inits/initDownload.js'
 import { createTodoElement } from './createElements/createTodoElements.js'
 
 export const container = document.getElementById('posts-container')
@@ -18,6 +17,5 @@ export function renderData(todos) {
 		container.append(todoElement)
 	})
 
-	downloadButton.hidden = true
 	hideLoader()
 }

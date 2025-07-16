@@ -1,8 +1,8 @@
 import { host } from '../host.js'
 
-export async function getTodos() {
+export async function getTodos(uid, token) {
 	try {
-		const response = await fetch(`${host}.json`, {
+		const response = await fetch(`${host}/${uid}.json?auth=${token}`, {
 			method: 'GET',
 		})
 
@@ -22,7 +22,7 @@ export async function getTodos() {
 			...data[key],
 		}))
 
-		todosArray.sort((a, b) => a.order - b.order)
+		todosArray.sort((a, b) => (a.order || 0) - (b.order || 0))
 
 		console.log(todosArray)
 		return todosArray
