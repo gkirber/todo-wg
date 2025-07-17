@@ -27,7 +27,6 @@ export async function getTodos(uid, token) {
 		console.log(todosArray)
 		return todosArray
 	} catch (error) {
-		console.error(`Error receiving data:`, error.message)
 		throw error
 	}
 }

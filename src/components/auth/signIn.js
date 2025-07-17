@@ -3,11 +3,7 @@ import {
 	sendEmailVerification,
 	signInWithEmailAndPassword,
 } from '../../firebaseConfig.js'
-import {
-	showConfirmation,
-	showSuccess,
-	showWarning,
-} from '../../utils/notification.js'
+import { showConfirmation, showWarning } from '../../utils/notification.js'
 import { loadData } from '../index.js'
 import { signWithGoogle } from './googleAuth.js'
 
@@ -39,12 +35,12 @@ signinForm.addEventListener('submit', async event => {
 		const user = userCredential.user
 
 		if (!user.emailVerified) {
-			showWarning('Your email is not verified. Please check your inbox.')
-			const resend = await showConfirmation('Resend verification email?')
+			showWarning('Your email is not verified. Please check your email')
+			const resend = await showConfirmation('Send verification email again?')
 
 			if (resend) {
 				await sendEmailVerification(user)
-				showSuccess('Verification email resent. Please check your inbox.')
+				showSuccess('Verification email sent again. Please check your email')
 			}
 			return
 		}
@@ -52,10 +48,18 @@ signinForm.addEventListener('submit', async event => {
 		showTasksBlock()
 		loadData()
 	} catch (error) {
-		if (error.code === 'auth/email-already-in-use') {
-			showWarning('This email is already registered. Please sign in.')
+		switch (error.code) {
+			case 'auth/too-many-requests':
+				showWarning('Too many login attempts. Please try again later')
+				break
+			case 'auth/invalid-credential':
+				showWarning('Invalid credentials. Please check your email and password')
+				break
+
+			default:
+				showWarning('Authentication error:', error.message, error.code)
+				break
 		}
-		console.error('Registration error: ', error.message, error.code)
 	}
 })
 

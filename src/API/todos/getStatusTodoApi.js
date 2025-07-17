@@ -23,7 +23,6 @@ export async function toggleTodoStatus(id, completed) {
 
 		return true
 	} catch (error) {
-		console.error(`Error updating task status:`, error.message)
 		throw error
 	}
 }

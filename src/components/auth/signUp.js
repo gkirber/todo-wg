@@ -36,16 +36,27 @@ signupForm.addEventListener('submit', async event => {
 		await sendEmailVerification(user)
 
 		showSuccess(
-			'To sign in, you need to verify your email. Please check your inbox.'
+			'Email verification required for login. Please check your email'
 		)
 		signupForm.reset()
 		hideSignupForm()
 		showSigninForm()
 	} catch (error) {
-		if (error.code === 'auth/email-already-in-use') {
-			showWarning('This email is already registered. Please sign in.')
+		switch (error.code) {
+			case 'auth/email-already-exists':
+			case 'auth/email-already-in-use':
+				showWarning('This email is already registered. Please sign in')
+				break
+			case 'auth/invalid-email':
+				showWarning('Invalid email format. Please check your input')
+				break
+			case 'auth/weak-password':
+				showWarning('Password must be at least 6 characters long')
+				break
+			default:
+				showWarning('An unknown error occurred: ', error.message, error.code)
+				break
 		}
-		console.error('Registration error: ', error.message, error.code)
 	}
 })
 

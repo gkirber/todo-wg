@@ -11,11 +11,11 @@ export async function signWithGoogle() {
 		const result = await signInWithPopup(auth, provider)
 		console.log(result)
 		if (result._tokenResponse.isNewUser) {
-			console.log('Registration via Google was successful')
+			console.log('Google registration completed successfully')
 		} else {
-			console.log('Login via Google was successful')
+			console.log('Google sign-in completed successfully')
 		}
 	} catch (error) {
-		console.error('Error logging in via Google: ', error.message)
+		console.error('Google sign-in error: ', error.message)
 	}
 }

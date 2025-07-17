@@ -1,4 +1,4 @@
-import { addNewTodo } from "../ui/addNewTodo.js";
+import { addNewTodo } from "../index.js";
 
 export function initAddTodo() {
   const taskInput = document.getElementById("task-input");

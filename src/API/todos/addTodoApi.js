@@ -14,13 +14,12 @@ export async function addTodo(newTodo) {
 		})
 
 		if (!response.ok) {
-			throw new Error(`Failed to add the task. Status: ${response.status}`)
+			throw new Error(`Failed to add task. Status: ${response.status}`)
 		}
 
-		console.log('Task added')
+		console.log('Задача добавлена')
 		return await response.json()
 	} catch (error) {
-		console.error(`Error adding:`, error.message)
 		throw error
 	}
 }

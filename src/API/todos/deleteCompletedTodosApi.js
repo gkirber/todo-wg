@@ -1,4 +1,5 @@
 import { getUserInfo } from '../../utils/authHelper.js'
+import { updateDeleteCompletedButtonVisibility } from '../../utils/helpers.js'
 import { host } from '../host.js'
 
 export async function deleteCompletedTodos(container) {
@@ -27,13 +28,15 @@ export async function deleteCompletedTodos(container) {
 					`Failed to delete completed list. Status: ${deleteResponse.status}`
 				)
 			}
+
 			todoElement.remove()
 		}
-		//Remove loadData, as there's no need to query the database every time, just remove the todoElement from the DOM tree
-		// await loadData();
+
+		// Оновлюємо відображення кнопки "Delete all completed tasks"
+		updateDeleteCompletedButtonVisibility()
+
 		return true
 	} catch (error) {
-		console.error('Error deleting completed tasks:', error.message)
 		throw error
 	}
 }

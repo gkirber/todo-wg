@@ -1,9 +1,9 @@
 import { auth, onAuthStateChanged } from '../firebaseConfig.js'
 
 /**
- * Gets information about the current authorized user
- * @returns {Promise<{uid: string, token: string}} Object with user uid and token
- * @throws {Error} If user is not authorized
+ * Gets information about the currently authorized user
+ * @returns {Promise<{uid: string, token: string}} Object with user's uid and token
+ * @throws {Error} If the user is not authorized
  */
 
 export const getUserInfo = () => {
@@ -12,7 +12,7 @@ export const getUserInfo = () => {
 			if (user) {
 				try {
 					const token = await user.getIdToken()
-					resolve({ uid: user.uid, token })
+					resolve({ uid: user.uid, token, emailVerified: user.emailVerified })
 				} catch (error) {
 					reject(new Error('Failed to get token'))
 				}

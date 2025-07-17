@@ -7,8 +7,8 @@ document.getElementById('logout-button').addEventListener('click', async () => {
 		hideSignupForm()
 		showSigninForm()
 		document.getElementById('task-container').style.display = 'none'
-		console.log('User has signed out')
+		console.log('User signed out successfully')
 	} catch (error) {
-		console.error('Error during sign out: ', error.message)
+		console.error('Error signing out: ', error.message)
 	}
 })

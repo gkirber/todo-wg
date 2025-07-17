@@ -1,4 +1,5 @@
 import { deleteTodo } from '../../API/index.js'
+import { updateDeleteCompletedButtonVisibility } from '../../utils/helpers.js'
 import { showConfirmation, showError } from '../../utils/notification.js'
 
 export function initDelete(todo, deleteButton) {
@@ -13,10 +14,14 @@ export function initDelete(todo, deleteButton) {
 		try {
 			await deleteTodo(todo.id)
 
-			deleteButton.closest('.todo').remove()
+			const todoElement = deleteButton.closest('.todo')
+			todoElement.remove()
+
+			// Оновлюємо відображення кнопки "Delete all completed tasks"
+			updateDeleteCompletedButtonVisibility()
 		} catch (error) {
 			console.error(error.message)
-			showError('Failed to delete the task')
+			showError('Failed to delete task')
 		}
 	})
 }

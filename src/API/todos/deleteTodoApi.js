@@ -9,14 +9,13 @@ export async function deleteTodo(id) {
 			method: 'DELETE',
 		})
 		if (!response.ok) {
-			throw new Error(`Failed to delete the task. Status: ${response.status}`)
+			throw new Error(`Failed to delete task. Status: ${response.status}`)
 		}
 
 		console.log('Task deleted')
 
 		return true
 	} catch (error) {
-		console.error(`Error deleting:`, error.message)
 		throw error
 	}
 }
