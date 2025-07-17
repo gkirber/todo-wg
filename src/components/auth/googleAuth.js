@@ -17,5 +17,23 @@ export async function signWithGoogle() {
 		}
 	} catch (error) {
 		console.error('Google sign-in error: ', error.message)
+
+		// Детальна обробка помилок
+		switch (error.code) {
+			case 'auth/popup-closed-by-user':
+				console.log('User closed the popup')
+				break
+			case 'auth/popup-blocked':
+				console.error('Popup was blocked by browser')
+				break
+			case 'auth/unauthorized-domain':
+				console.error('Domain is not authorized in Firebase Console')
+				break
+			case 'auth/network-request-failed':
+				console.error('Network error occurred')
+				break
+			default:
+				console.error('Unknown error:', error.code, error.message)
+		}
 	}
 }

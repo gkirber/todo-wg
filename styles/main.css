@@ -18,6 +18,14 @@ body {
 	box-sizing: border-box;
 }
 
+/* Мобільні стилі для body */
+@media (max-width: 768px) {
+	body {
+		padding: 20px 20px 20px 20px;
+		padding-top: 40px; /* Додатковий відступ зверху для мобільних */
+	}
+}
+
 /* Overlay */
 #overlay {
 	position: fixed;
@@ -65,6 +73,14 @@ body {
 	background-clip: text;
 	animation: gradientShift 5s infinite alternate;
 	text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Мобільні стилі для заголовка */
+@media (max-width: 768px) {
+	.app-title {
+		font-size: 2.5rem;
+		margin: 100px 0 60px 0; /* Відступ зверху для кнопки Log Out, знизу для контенту */
+	}
 }
 
 /* Gradient animation */
@@ -179,12 +195,26 @@ body {
 	margin-top: 0.5rem;
 	background-image: url('./../assets/icons/icons-google.png');
 	background-repeat: no-repeat;
+	background-size: 24px 24px; /* Зменшуємо розмір логотипу */
+	background-position: 12px center; /* Позиціонуємо логотип зліва по центру */
 	width: 100%;
 }
 
 #google-signup-button:hover,
 #google-signin-button:hover {
 	background-color: #d6d6d6;
+}
+
+/* Мобільні стилі для Google кнопок */
+@media (max-width: 768px) {
+	#google-signup-button,
+	#google-signin-button {
+		background-size: 20px 20px; /* Ще менший логотип на мобільних */
+		background-position: 10px center;
+		font-size: 14px;
+		height: 44px;
+		padding: 10px;
+	}
 }
 
 /* Task container */
@@ -382,9 +412,26 @@ body {
 	border-radius: 6px;
 	font-size: 16px;
 	cursor: pointer;
-	transition: all 0.3s;
+	transition: all 0.3s ease;
+	z-index: 1000;
 }
 
 .logout-button:hover {
 	background-color: #0056b3;
+}
+
+/* Мобільні стилі для кнопки Log Out */
+@media (max-width: 768px) {
+	.logout-button {
+		position: fixed; /* Зафіксовуємо кнопку */
+		top: 20px; /* Відступ від верху екрану */
+		right: 15px;
+		padding: 8px 16px;
+		font-size: 14px;
+		z-index: 1001; /* Вищий z-index для мобільних */
+		transition:
+			opacity 0.3s ease,
+			visibility 0.3s ease;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2); /* Тінь для кращої видимості */
+	}
 }

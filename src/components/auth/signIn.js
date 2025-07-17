@@ -3,7 +3,7 @@ import {
 	sendEmailVerification,
 	signInWithEmailAndPassword,
 } from '../../firebaseConfig.js'
-import { showConfirmation, showWarning } from '../../utils/notification.js'
+import { showConfirmation, showWarning, showSuccess } from '../../utils/notification.js'
 import { loadData } from '../index.js'
 import { signWithGoogle } from './googleAuth.js'
 
